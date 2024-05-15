@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Question Answering</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #b3b9b8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #chat-container {
+            max-width: 400px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        #chat-header {
+            background-color: #111111;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #chat-body {
+            padding: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            background-color: #b3b9b8;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+ 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+    </script>
+ 
+    <script type="text/javascript"
+            src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+    <div id="chat-container">
+        <div id="chat-header">
+            <h1 style="color: aqua;">Chatbot</h1>
+        </div>
+        <div id="chat-body">
+            <form action="/answer" method="post">
+                <label for="question">Ask a question:</label>
+                <input type="text" id="question" name="question" required>
+                <button type="submit">Get Answer</button>
+            </form>
+            {% if question %}
+                <h2>Your Question:</h2>
+                <p>{{ question }}</p>
+                <h2>Answer:</h2>
+                <p>{{ answer }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
